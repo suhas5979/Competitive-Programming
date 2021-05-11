@@ -1,3 +1,5 @@
+package starter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ class FindMissingNumbers {
 
     public static List<Integer> findDisappearedNumbers(int[] nums) {
         int ptr = 0;
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<>();
         while (ptr < nums.length) {
             int index = Math.abs(nums[ptr]) - 1;
             if (nums[index] > 0)

@@ -1,3 +1,4 @@
+package starter;
 public class numberOfEvenDigitNumbers {
     public static void main(String[] args) {
         int[] arr = { 123, 12, 1324, 242424, 2424, 121, 34 };

@@ -1,3 +1,4 @@
+package starter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,9 +14,9 @@ class Sum3 {
     public static List<List<Integer>> threeSum(int[] nums) {
 
         if (nums.length < 3)
-            return new ArrayList();
+            return new ArrayList<>();
 
-        Set<List<Integer>> set = new HashSet();
+        Set<List<Integer>> set = new HashSet<>();
 
         Arrays.sort(nums);
 
@@ -33,6 +34,6 @@ class Sum3 {
                     r--;
             }
         }
-        return new ArrayList(set);
+        return new ArrayList<>(set);
     }
 }

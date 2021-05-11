@@ -1,3 +1,4 @@
+package starter;
 class Suhas extends Suryavanshi implements Sanjay {
     final Happy HAPPINESS = super.HAPPINESS;
     protected Friend[] friends;
@@ -21,6 +22,6 @@ class Friend {
 /**
  * Fun
  */
-public interface Sanjay {
+interface Sanjay {
 
 }

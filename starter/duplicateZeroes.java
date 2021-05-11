@@ -1,3 +1,4 @@
+package starter;
 public class duplicateZeroes {
     public static void main(String[] args) {
         int[] arr = { 0, 1, 1, 0, 2, 1, 3, 4, 2, 0, 9, 0, 2, 1, 3, 0, 5 };

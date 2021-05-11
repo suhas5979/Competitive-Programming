@@ -1,3 +1,4 @@
+package starter;
 public class FindPivoteIndex {
     public static void main(String[] args) {
         int[] arr = { -1, -1, -1, -1, -1, 0 };
