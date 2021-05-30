@@ -1,16 +1,16 @@
 package dataStructuresAndAlgorithms.myDataStructures;
 
-class Node {
-	int data;
-	Node next;
-
-	Node(int data) {
-		this.data = data;
-		this.next = null;
-	}
-}
-
 public class LinkedList {
+	class Node {
+		int data;
+		Node next;
+
+		Node(int data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
+
 	Node head, tail;
 
 	LinkedList() {
@@ -121,21 +121,21 @@ public class LinkedList {
 		ll.show();
 //		Node revListNode = reverseList(ll.getHead());
 //		printList(revListNode);
-		
+
 //		printList(cycledLinkedList());
-		
-		System.out.println(detectCycle(cycledLinkedList()));
+
+//		System.out.println(detectCycle(cycledLinkedList()));
 
 	}
 
 	static Node reverseList(Node head) {
 		if (head == null || head.next == null)
 			return head;
-		
+
 		Node prev = null;
 		Node ptr = head;
 		Node next = null;
-		while(ptr != null) {
+		while (ptr != null) {
 			next = ptr.next;
 			ptr.next = prev;
 			prev = ptr;
@@ -144,40 +144,43 @@ public class LinkedList {
 		return prev;
 
 	}
-	static Node cycledLinkedList() {
-		Node n1 = new Node(21);
-		Node n2 = new Node(5);
-		Node n3 = new Node(1);
-		Node n4 = new Node(9);
-		Node n5= new Node(11);
-		Node n6= new Node(14);
-		Node n7= new Node(6);
-		Node n8= new Node(22);
-		n1.next = n2;
-		n2.next = n3;
-		n3.next = n4;
-		n4.next = n5;
-		n5.next = n6;
-		n6.next = n7;
-		n7.next = n8;
-		n8.next = n4;
-		return n1;
-		
-	}
+
+//	static Node cycledLinkedList() {
+//		Node n1 = new Node(21);
+//		Node n2 = new Node(5);
+//		Node n3 = new Node(1);
+//		Node n4 = new Node(9);
+//		Node n5 = new Node(11);
+//		Node n6 = new Node(14);
+//		Node n7 = new Node(6);
+//		Node n8 = new Node(22);
+//		n1.next = n2;
+//		n2.next = n3;
+//		n3.next = n4;
+//		n4.next = n5;
+//		n5.next = n6;
+//		n6.next = n7;
+//		n7.next = n8;
+//		n8.next = n4;
+//		return n1;
+//
+//	}
+
 	static int detectCycle(Node head) {
-		if(head == null || head.next == null ) return -1; 
+		if (head == null || head.next == null)
+			return -1;
 		Node slow = head;
 		Node fast = head.next;
-		
-		while(fast != null && slow != fast) {
+
+		while (fast != null && slow != fast) {
 			fast = fast.next.next;
 			slow = slow.next;
 		}
-		if(slow == fast) {
+		if (slow == fast) {
 			return slow.data;
 		}
 		return -1;
-		
+
 	}
 
 }

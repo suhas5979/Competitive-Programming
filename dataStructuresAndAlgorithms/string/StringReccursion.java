@@ -1,4 +1,4 @@
-package dataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms.string;
 
 public class StringReccursion {
 
