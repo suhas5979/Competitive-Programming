@@ -11,9 +11,16 @@ public class LongestPallindrom {
 		String str = sc.nextLine();
 		int n = str.length();
 		sc.close();
-		int[][] memo = new int[n + 1][n + 1];
+		int[][] memo = new int[n][n];
 
 		System.out.println(longestPalindrom(str, 0, n - 1, memo));
+
+		for (int[] nums : memo) {
+			for (int num : nums) {
+				System.out.print(num + " ");
+			}
+			System.out.println();
+		}
 	}
 
 	static int longestPalindrom(String str, int start, int end) {
@@ -59,3 +66,7 @@ public class LongestPallindrom {
 // Sample Test Case 1
 
 //abcsracecaridsfsfsfsggdfggdsgsgsdsdgdgsdgsdgsdgdgsdgsgddsgdgdgsdsgs
+
+// Sample Test Case 2
+
+// asdracecardfg
