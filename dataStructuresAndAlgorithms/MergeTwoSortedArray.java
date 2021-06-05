@@ -17,7 +17,7 @@ public class MergeTwoSortedArray {
 			arr2[i] = sc.nextInt();
 		}
 		sc.close();
-		merge(arr1, n, arr2, m);
+		merge2(arr1, n, arr2, m);
 		for (int i = 0; i < n; i++) {
 			System.out.print(arr1[i] + " ");
 		}
@@ -42,6 +42,21 @@ public class MergeTwoSortedArray {
 					ptr--;
 				}
 			}
+		}
+	}
+	static void merge2(int [] arr1,int n,int[] arr2,int m) {
+		for(int i=m-1;i >= 0;i--) {
+			int j;
+			int last = arr1[n-1];
+			for( j =n-2;j>=0 && arr1[j] > arr2[i];j--) {
+				arr1[j+1] =arr1[j];
+			}
+			if(j != n-2 && arr2[i] <last ) {
+				arr1[j+1] = arr2[i];
+				arr2[i] = last;
+			}
+				
+				
 		}
 	}
 

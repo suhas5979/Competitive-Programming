@@ -49,3 +49,11 @@ public class FirstRepeatedString {
 	}
 
 }
+
+
+
+
+// Illustration
+
+// racecar
+// rsdfesdr
