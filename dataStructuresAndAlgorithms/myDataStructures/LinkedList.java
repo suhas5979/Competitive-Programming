@@ -1,15 +1,18 @@
 package dataStructuresAndAlgorithms.myDataStructures;
 
-public class LinkedList {
-	class Node {
-		int data;
-		Node next;
+import java.util.HashSet;
 
-		Node(int data) {
-			this.data = data;
-			this.next = null;
-		}
+class Node {
+	int data;
+	Node next;
+
+	Node(int data) {
+		this.data = data;
+		this.next = null;
 	}
+}
+
+public class LinkedList {
 
 	Node head, tail;
 
@@ -112,19 +115,53 @@ public class LinkedList {
 	public static void main(String[] args) throws Exception {
 
 		LinkedList ll = new LinkedList();
-		ll.add(3);
-		ll.add(13);
-		ll.add(31);
-		ll.add(56);
-		ll.add(7);
-		ll.addAt(100, 1);
+		ll.add(12);
+		ll.add(5);
+		ll.add(21);
+		ll.add(8);
+		ll.add(12);
+		ll.add(21);
+		ll.add(8);
+		ll.add(100);
+		ll.add(200);
+		ll.add(222);
 		ll.show();
-//		Node revListNode = reverseList(ll.getHead());
+//		Node revListNode = removeDuplicatesInUnSorted(ll.getHead());
 //		printList(revListNode);
+
+		splitTest();
 
 //		printList(cycledLinkedList());
 
 //		System.out.println(detectCycle(cycledLinkedList()));
+
+//		deleteCycle(cycledLinkedList());
+
+	}
+
+	static void additionOfLLTest() {
+		LinkedList ll1 = new LinkedList();
+		ll1.add(4);
+		ll1.add(5);
+
+		LinkedList ll2 = new LinkedList();
+		ll2.add(3);
+		ll2.add(4);
+		ll2.add(5);
+
+		Node res = addToLL(ll1.getHead(), ll2.getHead());
+		printList(res);
+
+	}
+
+	static void addOneToLLTest() {
+		LinkedList ll1 = new LinkedList();
+		ll1.add(4);
+		ll1.add(3);
+		ll1.add(1);
+
+		Node res = addOneToLL(ll1.getHead());
+		printList(res);
 
 	}
 
@@ -144,27 +181,163 @@ public class LinkedList {
 		return prev;
 
 	}
+	
+	/*
 
-//	static Node cycledLinkedList() {
-//		Node n1 = new Node(21);
-//		Node n2 = new Node(5);
-//		Node n3 = new Node(1);
-//		Node n4 = new Node(9);
-//		Node n5 = new Node(11);
-//		Node n6 = new Node(14);
-//		Node n7 = new Node(6);
-//		Node n8 = new Node(22);
-//		n1.next = n2;
-//		n2.next = n3;
-//		n3.next = n4;
-//		n4.next = n5;
-//		n5.next = n6;
-//		n6.next = n7;
-//		n7.next = n8;
-//		n8.next = n4;
-//		return n1;
-//
-//	}
+	static void splitList(Node head) {
+		if (list.head == null || list.head.next == null) {
+			return;
+		}
+		int count = 0;
+		Node head = list.head;
+		Node ptr = head;
+		// count all nodes;
+		do{
+		    count++;
+		    ptr = ptr.next;
+		}while(ptr != head);
+		// calculate middle of nodes
+		int temp = (count+1) /2;
+		while(temp >1){
+		    ptr = ptr.next;
+		    temp--;
+		}
+		// secure next node
+		Node temp1 = ptr.next;
+		// connect middle to head in order to create first circular linkedlist
+		ptr.next = head;
+		// saving head to head 1
+		list.head1 = head;
+		// saving head 2 
+		list.head2 = temp1;
+		// iterate over next half of the linked list and connect last node 
+		// to 
+		while(temp1.next != head){
+		    temp1 = temp1.next;
+		}
+        temp1.next = list.head2;
+	}
+	
+	*/
+
+	static Node reverseGroup(Node head, int k) {
+		if (head == null || head.next == null)
+			return head;
+		Node prev = null;
+		Node ptr = head;
+		Node next = null;
+		int count = 0;
+		while (ptr != null && count < k) {
+			next = ptr.next;
+			ptr.next = prev;
+			prev = ptr;
+			ptr = next;
+			count++;
+		}
+		head.next = reverseGroup(ptr, k);
+		return prev;
+	}
+
+	static Node removeDuplicates(Node head) {
+		if (head == null || head.next == null)
+			return head;
+		if (head.next.data == head.data) {
+			head.next = removeDuplicates(head.next);
+			return head.next;
+		} else {
+			head.next = removeDuplicates(head.next);
+			return head;
+		}
+	}
+
+	static Node removeDuplicatesInUnSorted(Node head) {
+		if (head == null || head.next == null)
+			return head;
+		HashSet<Integer> set = new HashSet<>();
+		Node prev = null;
+		Node ptr = head;
+		while (ptr != null) {
+			if (set.contains(ptr.data)) {
+				prev.next = ptr.next;
+			} else {
+				set.add(ptr.data);
+				prev = ptr;
+			}
+			ptr = ptr.next;
+		}
+		return head;
+	}
+
+	static Node middleOFLinkedList(Node head) {
+		if (head == null || head.next == null)
+			return head;
+		Node slow = head;
+		Node fast = head;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
+
+	static Node removeDuplicatesInSorted(Node head) {
+		if (head == null || head.next == null)
+			return head;
+		Node ptr = head;
+		while (ptr != null && ptr.next != null) {
+			if (ptr.data == ptr.next.data) {
+				ptr.next = ptr.next.next;
+			} else {
+				ptr = ptr.next;
+			}
+		}
+		return head;
+	}
+
+	// Split Test
+	static void splitTest() {
+		Node n1 = new Node(21);
+		Node n2 = new Node(5);
+		Node n3 = new Node(1);
+		Node n4 = new Node(9);
+		Node n5 = new Node(11);
+		Node n6 = new Node(14);
+		Node n7 = new Node(6);
+		Node n8 = new Node(22);
+		Node n9 = new Node(152);
+		n1.next = n2;
+		n2.next = n3;
+		n3.next = n4;
+		n4.next = n5;
+		n5.next = n6;
+		n6.next = n7;
+		n7.next = n8;
+		n8.next = n9;
+		n9.next = n1;
+//		splitList(n1);
+
+	}
+
+	static Node cycledLinkedList() {
+		Node n1 = new Node(21);
+		Node n2 = new Node(5);
+		Node n3 = new Node(1);
+		Node n4 = new Node(9);
+		Node n5 = new Node(11);
+		Node n6 = new Node(14);
+		Node n7 = new Node(6);
+		Node n8 = new Node(22);
+		n1.next = n2;
+		n2.next = n3;
+		n3.next = n4;
+		n4.next = n5;
+		n5.next = n6;
+		n6.next = n7;
+		n7.next = n8;
+		n8.next = n1;
+		return n1;
+
+	}
 
 	static int detectCycle(Node head) {
 		if (head == null || head.next == null)
@@ -182,5 +355,105 @@ public class LinkedList {
 		return -1;
 
 	}
+
+	static Node addToLL(Node head1, Node head2) {
+		if (head1 == null)
+			return head2;
+		if (head2 == null)
+			return head1;
+
+		Node dummy = new Node(0);
+		Node ptr1 = reverseList(head1);
+		Node ptr2 = reverseList(head2);
+		Node ptr = dummy;
+		int carry = 0;
+		while (ptr1 != null && ptr2 != null) {
+			int sum = ptr1.data + ptr2.data + carry;
+			ptr.next = new Node(sum % 10);
+			carry = sum / 10;
+			ptr1 = ptr1.next;
+			ptr2 = ptr2.next;
+			ptr = ptr.next;
+		}
+		while (ptr1 != null) {
+			int sum = carry + ptr1.data;
+			ptr.next = new Node(sum % 10);
+			carry = sum / 10;
+			ptr1 = ptr1.next;
+			ptr = ptr.next;
+		}
+		while (ptr2 != null) {
+			int sum = carry + ptr2.data;
+			ptr.next = new Node(sum % 10);
+			carry = sum / 10;
+			ptr2 = ptr2.next;
+			ptr = ptr.next;
+		}
+		if (carry == 1)
+			ptr.next = new Node(1);
+		return reverseList(dummy.next);
+	}
+
+	static Node addOneToLL(Node head) {
+		if (head == null)
+			return head;
+		Node ptr = reverseList(head);
+		int carry = 1;
+		Node save = ptr;
+		Node prev = null;
+		while (ptr != null) {
+			int sum = ptr.data + carry;
+			ptr.data = sum % 10;
+			carry = sum / 10;
+			if (carry == 0)
+				break;
+			prev = ptr;
+			ptr = ptr.next;
+		}
+		if (carry == 1) {
+			prev.next = new Node(1);
+		}
+
+		return reverseList(save);
+
+	}
+
+	static void deleteCycle(Node head) {
+		if (head == null)
+			return;
+		Node slow = head;
+		Node fast = head.next;
+		while (fast != null) {
+			System.out.println("ss");
+			if (fast == slow) {
+				fast = head;
+				break;
+			}
+			if (slow.next == head) {
+				slow.next = null;
+				return;
+			}
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		System.out.println(fast.data);
+		System.out.println(slow.data);
+
+		Node prev = slow;
+		while (slow != null && fast != null && fast != slow) {
+			prev = slow;
+			slow = slow.next;
+			fast = fast.next;
+		}
+		System.out.println(slow.data);
+		prev.next = null;
+		Node ptr = head;
+		while (ptr != null) {
+			System.out.print(ptr.data + "->");
+			ptr = ptr.next;
+		}
+
+	}
+
 
 }

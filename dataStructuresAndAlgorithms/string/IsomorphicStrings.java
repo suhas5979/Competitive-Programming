@@ -1,6 +1,5 @@
 package dataStructuresAndAlgorithms.string;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class IsomorphicStrings {

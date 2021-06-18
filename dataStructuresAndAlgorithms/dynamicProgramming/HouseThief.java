@@ -15,8 +15,8 @@ public class HouseThief {
 		}
 		sc.close();
 		int[] memo = new int[n + 1];
-		System.out.println(maxProfitFromHouse(0, arr));
-		System.out.println(count);
+
+		System.out.println(maxProfitBottomUp(arr));
 
 	}
 
@@ -44,6 +44,20 @@ public class HouseThief {
 		int current = houses[n] + maxProfitFromHouse(n + 2, houses);
 		int currentSkip = maxProfitFromHouse(n + 1, houses);
 		return Math.max(current, currentSkip);
+	}
+
+	static int maxProfitBottomUp(int[] houses) {
+		int n = houses.length;
+		int[] res = new int[n + 1];
+		res[n] = 0;
+		res[n - 1] = houses[n - 1];
+		for (int i = n - 2; i >= 0; i--) {
+			res[i] = Math.max(houses[i] + res[i + 2], res[i + 1]);
+		}
+		for (int i = n - 2; i >= 0; i--) {
+			res[i] = Math.max(houses[i] + res[i + 2], res[i + 1]);
+		}
+		return res[0];
 	}
 
 }
