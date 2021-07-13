@@ -14,6 +14,7 @@ public class NextGreaterElement {
 		}
 
 	}
+	
 	public static void nextGreaterElement(int[] arr) {
 		Stack<Integer> st = new Stack<>();
 		for(int i=0;i<arr.length;i++) {
